@@ -2,8 +2,8 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-// const articles = require('./db/articles.js');
-const products = require('./db/products.js');
+// const articles = require('./routes/articles.js');
+const products = require('./routes/products.js');
 const PORT = 3000;
 
 const app = express();
