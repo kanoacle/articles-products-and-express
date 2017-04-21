@@ -27,7 +27,15 @@ products.getById = (req, res) => {
   }
 };
 products.putById = (req, res) => {
-  res.send('Here we are');
+  if (list.products[req.params.id - 1] !== undefined) {
+    list.products.splice(req.params.id - 1, 1, req.body);
+    for (var i = 0; i < list.products.length; i++) {
+      list.products[i].id = i + 1;
+    }
+    res.json({success: true});
+  } else {
+    res.send(`No product #${req.params.id} available.`);
+  }
 };
 products.deleteById = (req, res) => {
   if (list.products[req.params.id - 1] !== undefined) {
