@@ -2,7 +2,7 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const router = express.Router();
-const list = {products: []};
+let list = {products: []};
 let id = 1;
 
 router.route('/')
@@ -25,6 +25,20 @@ router.route('/')
 })
 .delete((req, res) => {
   res.send('Here we are');
+});
+
+
+router.route('/:id/')
+.get((req, res) => {
+  let oneList = {};
+  console.log(req.params.id - 1);
+  if (list.products[req.params.id - 1] !== undefined) {
+    oneList.products = [list.products[req.params.id - 1]];
+    console.log(oneList);
+    res.render('products', oneList);
+  } else {
+    res.send(`No product #${req.params.id} available.`);
+  }
 });
 
 module.exports = router;
