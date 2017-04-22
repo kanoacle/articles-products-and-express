@@ -54,14 +54,14 @@ products.edit = (req, res) => {
   let oneList = {};
   if (list.products[req.params.id - 1] !== undefined) {
     oneList.products = [list.products[req.params.id - 1]];
-    res.render('edit', oneList);
+    res.render('editP', oneList);
   } else {
     res.send(`No product #${req.params.id} available.`);
   }
 };
 
 products.new = (req, res) => {
-  res.render('new');
+  res.render('newP');
 };
 
 module.exports = products;
