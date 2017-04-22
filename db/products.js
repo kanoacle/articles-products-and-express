@@ -10,7 +10,7 @@ products.post = (req, res) => {
   if (req.body.name !== undefined && req.body.price !== undefined && req.body.inventory !== undefined) {
       req.body.id = id;
       list.products.push(req.body);
-      res.json({success: true});
+      res.render('products', list);
     } else {
       res.json({success: false});
     }
@@ -32,7 +32,7 @@ products.putById = (req, res) => {
     for (var i = 0; i < list.products.length; i++) {
       list.products[i].id = i + 1;
     }
-    res.json({success: true});
+    res.render('products', list);
   } else {
     res.send(`No product #${req.params.id} available.`);
   }
@@ -43,10 +43,25 @@ products.deleteById = (req, res) => {
     for (var i = 0; i < list.products.length; i++) {
       list.products[i].id = i + 1;
     }
-    res.json({success: true});
+    res.render('products', list);
   } else {
     res.send(`No product #${req.params.id} available.`);
   }
+  id--;
+};
+
+products.edit = (req, res) => {
+  let oneList = {};
+  if (list.products[req.params.id - 1] !== undefined) {
+    oneList.products = [list.products[req.params.id - 1]];
+    res.render('edit', oneList);
+  } else {
+    res.send(`No product #${req.params.id} available.`);
+  }
+};
+
+products.new = (req, res) => {
+  res.render('new');
 };
 
 module.exports = products;

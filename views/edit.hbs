@@ -1,0 +1,21 @@
+<h1>Edit Product</h1>
+{{#each products}}
+<form action="/products/{{id}}?_method=PUT" method="post">
+  <p>{{id}}.</p>
+  <form action="/" method="put">
+    <h2>Name</h2>
+    <input name="name" value="{{name}}" type="text">
+    <h4>Price</h4>
+    <input name="price" value="{{price}}" type="text">
+    <h4>Availability</h4>
+    <input name="inventory" value="{{inventory}}" type="text">
+    <br>
+    <br>
+    <button type="submit">Update Item</button>
+    <br>
+  </form>
+  <form action="/products/{{id}}?_method=DELETE" method="post">
+    <br>
+    <button type="submit">Delete Item</button>
+  </form>
+{{/each}}

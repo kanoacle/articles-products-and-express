@@ -8,10 +8,15 @@ router.route('/')
 .get(products.get)
 .post(products.post);
 
+router.route('/new')
+.get(products.new);
 
 router.route('/:id/')
 .get(products.getById)
 .put(products.putById)
 .delete(products.deleteById);
+
+router.route('/:id/edit')
+.get(products.edit);
 
 module.exports = router;

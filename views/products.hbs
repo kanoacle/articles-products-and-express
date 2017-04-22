@@ -1,8 +1,16 @@
 <h1>Products</h1>
+  <form action="/products/new" method="get">
+    <button type="submit">Create New Item</button>
+  </form>
 {{#each products}}
-  <p>{{id}}.</p>
-  <h3>Item</h3>
-  <h2>{{name}}</h2>
-  <p>Price: {{price}}</p>
-  <p>Availability: {{inventory}} in stock</p>
+  <form action="/products/{{id}}/edit" method="get">
+    <br>
+    <p>{{id}}.</p>
+    <h2>{{name}}</h2>
+    <p>Price: {{price}}</p>
+    <p>Availability: {{inventory}} in stock</p>
+    <button type="submit">Edit Item</button>
+    <br>
+    <br>
+  </form>
 {{/each}}
