@@ -5,7 +5,12 @@ const router = express.Router();
 const products = require('../db/products.js');
 
 router.route('/')
-.get(products.get)
+.get((req, res) => {
+  products.get()
+  .then((data) => {
+    res.render('products', {products: data});
+  });
+})
 .post(products.post);
 
 router.route('/new')

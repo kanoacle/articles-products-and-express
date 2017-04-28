@@ -1,20 +1,21 @@
 /*jshint esversion: 6*/
 const products = {};
-let list = {products: []};
-let id = 1;
+const db = require('./connection.js');
 
-products.get = (req, res) => {
-  res.render('products', list);
+products.get = () => {
+  return db.any('SELECT * FROM products')
+  .catch((err) => {
+    console.log(err);
+  });
 };
+
 products.post = (req, res) => {
   if (req.body.name !== undefined && req.body.price !== undefined && req.body.inventory !== undefined) {
-      req.body.id = id;
       list.products.push(req.body);
       res.render('products', list);
     } else {
       res.json({success: false});
     }
-    id++;
 };
 
 products.getById = (req, res) => {

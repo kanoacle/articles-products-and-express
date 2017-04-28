@@ -2,6 +2,7 @@
 const articles = {};
 let list = {articles: []};
 let id = 1;
+const db = require('./connection.js');
 
 articles.get = (req, res) => {
   res.render('articles', list);
