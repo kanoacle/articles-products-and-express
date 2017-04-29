@@ -2,15 +2,18 @@
   <form action="/articles/new" method="get">
     <button type="submit">Create New Item</button>
   </form>
+  <form action="/articles/" method="get">
+    <button type="submit">Home</button>
+  </form>
 {{#each articles}}
+  <form action="/articles/{{title}}">
+      <br>
+      <br>
+      <button class="item-name" type="submit">{{title}}</button>
+  </form>
   <form action="/articles/{{title}}/edit" method="get">
-    <br>
-    <h2>{{title}}</h2>
     <p>by <span style="font-weight: bold">{{author}}</span></p>
     <p>{{content}}</p>
-    <form action="/articles/{{title}}">
-      <button type="submit">Read More</button>
-    </form>
     <br>
     <button type="submit">Edit Item</button>
     <br>

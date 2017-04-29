@@ -1,68 +1,52 @@
 /*jshint esversion: 6*/
 const articles = {};
-let list = {articles: []};
-let id = 1;
 const db = require('./connection.js');
 
-articles.get = (req, res) => {
-  res.render('articles', list);
-};
-articles.post = (req, res) => {
-  if (req.body.title !== undefined && req.body.author !== undefined && req.body.content !== undefined) {
-      list.articles.push(req.body);
-      res.render('articles', list);
-    } else {
-      res.json({success: false});
-      console.log(req.body);
-    }
-    id++;
+articles.get = () => {
+  return db.any('SELECT * FROM articles')
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
-articles.getById = (req, res) => {
-  let oneList = {};
-  if (list.articles[req.params.id - 1] !== undefined) {
-    oneList.articles = [list.articles[req.params.id - 1]];
-    res.render('articles', oneList);
-  } else {
-    res.send(`No article #${req.params.id} available.`);
-  }
-};
-articles.putById = (req, res) => {
-  if (list.articles[req.params.id - 1] !== undefined) {
-    list.articles.splice(req.params.id - 1, 1, req.body);
-    for (var i = 0; i < list.articles.length; i++) {
-      list.articles[i].id = i + 1;
-    }
-    res.render('articles', list);
-  } else {
-    res.send(`No article #${req.params.id} available.`);
-  }
-};
-articles.deleteById = (req, res) => {
-  if (list.articles[req.params.id - 1] !== undefined) {
-    list.articles.splice(req.params.id - 1, 1);
-    for (var i = 0; i < list.articles.length; i++) {
-      list.articles[i].id = i + 1;
-    }
-    res.render('articles', list);
-  } else {
-    res.send(`No article #${req.params.id} available.`);
-  }
-  id--;
+articles.post = (newArticle) => {
+  const options = [newArticle.title, newArticle.author, newArticle.content];
+  return db.none('INSERT INTO articles(title, author, content) VALUES($1, $2, $3)', options)
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
-articles.edit = (req, res) => {
-  let oneList = {};
-  if (list.articles[req.params.id - 1] !== undefined) {
-    oneList.articles = [list.articles[req.params.id - 1]];
-    res.render('editA', oneList);
-  } else {
-    res.send(`No article #${req.params.id} available.`);
-  }
+articles.getById = (title) => {
+  const name = [title];
+  return db.any('SELECT * FROM articles WHERE title = $1', name)
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
-articles.new = (req, res) => {
-  res.render('newA');
+articles.putById = (article, arTitle) => {
+  const options = [article.name, article.price, article.inventory, arTitle];
+  return db.none('UPDATE articles SET title = $1, author = $2, content = $3 WHERE title = $4', options)
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+articles.deleteById = (title) => {
+  const name = [title];
+  return db.any('DELETE FROM articles WHERE title = $1', name)
+  .catch((err) => {
+    console.log(err);
+  });
+};
+
+articles.edit = (title) => {
+  const name = [title];
+  return db.any('SELECT * FROM articles WHERE title = $1', name)
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
 module.exports = articles;

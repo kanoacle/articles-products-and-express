@@ -34,7 +34,7 @@ products.putById = (product, id) => {
 };
 
 products.deleteById = (id) => {
-  const num = [id.toString()];
+  const num = [id];
   return db.any('DELETE FROM products WHERE id = $1', num)
   .catch((err) => {
     console.log(err);
@@ -42,7 +42,7 @@ products.deleteById = (id) => {
 };
 
 products.edit = (id) => {
-  const num = [id.toString()];
+  const num = [id];
   return db.any('SELECT * FROM products WHERE id = $1', num)
   .catch((err) => {
     console.log(err);

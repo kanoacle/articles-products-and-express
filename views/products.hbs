@@ -7,13 +7,13 @@
   </form>
 {{#each products}}
   <br>
-  <br>
   <form action="/products/{{id}}" method="get">
-    <button class="product-name" type="submit">{{name}}</button>
+    <button class="item-name" type="submit">{{name}}</button>
   </form>
   <p>Price: {{price}}</p>
   <p>Availability: {{inventory}}</p>
   <form action="/products/{{id}}/edit" method="get">
+    <br>
     <button type="submit">Edit Item</button>
   </form>
   <br>
