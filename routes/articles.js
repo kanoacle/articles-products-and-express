@@ -2,7 +2,7 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const router = express.Router();
-const articles = require('../db/articles.js');
+const articles = require('../db/articlesDB.js');
 
 router.route('/')
 .get(articles.get)

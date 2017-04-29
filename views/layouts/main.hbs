@@ -3,6 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>Articles and Products</title>
+  <style>
+  @keyframes title-pulse {
+    0%   {transform: scale(1);}
+    50%   {transform: scale(1.05);}
+    100%   {transform: scale(1);}
+  }
+  @keyframes insta-grade {
+    0%    {color: #6160CC;}
+    10%   {color: #9146B8;}
+    20%   {color: #B92E8B;}
+    30%   {color: #DA3683;}
+    40%   {color: #E73E69;}
+    50%   {color: #FCB358;}
+    60%   {color: #F17B3E;}
+    70%   {color: #D4546A;}
+    80%   {color: #A93E96;}
+    90%   {color: #7B42B9;}
+    100%  {color: #5B65D1;}
+  }
+  body {
+    padding: 50px 0 0 100px;
+  }
+  .product-name {
+    border: none;
+    background-color: white;
+    font-size: 24px;
+    padding: 0;
+    font-family: serif;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-animation: title-pulse 1s infinite;
+    -moz-animation:    title-pulse 1s infinite;
+    -o-animation:      title-pulse 1s infinite;
+    animation:         title-pulse 1s infinite;
+    -webkit-animation: insta-grade 5s infinite;
+    -moz-animation:    insta-grade 5s infinite;
+    -o-animation:      insta-grade 5s infinite;
+    animation:         insta-grade 5s infinite;
+  }
+  .product-name:focus {
+    outline: none;
+  }
+  </style>
 </head>
 <body>
   {{{body}}}

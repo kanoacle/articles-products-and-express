@@ -2,15 +2,21 @@
   <form action="/products/new" method="get">
     <button type="submit">Create New Item</button>
   </form>
-{{#each products}}
-  <form action="/products/{{id}}/edit" method="get">
-    <br>
-    <p>{{id}}.</p>
-    <h2>{{name}}</h2>
-    <p>Price: {{price}}</p>
-    <p>Availability: {{inventory}} in stock</p>
-    <button type="submit">Edit Item</button>
-    <br>
-    <br>
+  <form action="/products/" method="get">
+    <button type="submit">Home</button>
   </form>
+{{#each products}}
+  <br>
+  <br>
+  <form action="/products/{{id}}" method="get">
+    <button class="product-name" type="submit">{{name}}</button>
+  </form>
+  <p>Price: {{price}}</p>
+  <p>Availability: {{inventory}}</p>
+  <form action="/products/{{id}}/edit" method="get">
+    <button type="submit">Edit Item</button>
+  </form>
+  <br>
+  <br>
+
 {{/each}}

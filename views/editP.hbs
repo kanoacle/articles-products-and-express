@@ -1,7 +1,6 @@
 <h1>Edit Product</h1>
 {{#each products}}
 <form action="/products/{{id}}?_method=PUT" method="post">
-  <p>{{id}}.</p>
   <form action="/" method="put">
     <h2>Name</h2>
     <input name="name" value="{{name}}" type="text">
